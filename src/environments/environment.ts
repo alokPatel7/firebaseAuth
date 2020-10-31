@@ -3,9 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
 };
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+export const firebaseConfig = {
+  apiKey: 'AIzaSyCRCtFULm0vcSURi7b6Wfe0Jo04kHZ631A',
+  authDomain: 'authentications-3ff1b.firebaseapp.com',
+  databaseURL: 'https://authentications-3ff1b.firebaseio.com',
+  projectId: 'authentications-3ff1b',
+  storageBucket: 'authentications-3ff1b.appspot.com',
+  messagingSenderId: '233187886243',
+  appId: '1:233187886243:web:2f9023dd56c9e030ae6b16',
+  measurementId: 'G-GFHTCPK0S6',
+};
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
