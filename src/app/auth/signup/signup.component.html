@@ -22,11 +22,10 @@
           >We'll never share your number with anyone else.</small
         >
       </div>
-      <div *ngIf="!windowRef.confirmationResult" class="form-group">
+      <div class="form-group">
         <div id="recaptchacontainer"></div>
       </div>
       <!-- timer code for resend OTP  -->
-      <span id="timer"></span>
       <button
         *ngIf="!windowRef.confirmationResult"
         type="submit"
@@ -34,11 +33,14 @@
       >
         Send OTP
       </button>
+    </form>
+    <form (ngSubmit)="ReSendOTP()">
+      <span id="timer"></span>
       <button
         *ngIf="windowRef.confirmationResult"
         type="submit"
         class="btn btn-primary"
-        id="isResendOTP"
+        [disabled]="isResendOTP"
       >
         Re-send OTP
       </button>

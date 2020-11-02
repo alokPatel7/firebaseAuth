@@ -1,13 +1,11 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-// import firebase from 'firebase/app';
 import { firebaseConfig } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { WindowService } from '../../services/window.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-// import { auth } from "firebase/auth";
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +14,7 @@ import 'firebase/auth';
 })
 export class SignupComponent implements OnInit, AfterViewInit {
   windowRef: any;
-  contactNumber: Number;
+  contactNumber: Number = 9621634369;
   varificationcode: Number;
   message = '';
   contactMessage = '';
@@ -34,7 +32,9 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
   }
 
   ngAfterViewInit() {
@@ -56,30 +56,29 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   SendOTP() {
-    console.log('form data', this.contactNumber);
+    this.contactMessage = '';
+    this.isResendOTP = true;
     var appVerifier = this.windowRef.recaptchaVerifier;
     firebase
       .auth()
       .signInWithPhoneNumber(`+91${this.contactNumber}`, appVerifier)
       .then((result) => {
         this.windowRef.confirmationResult = result;
-        let seconds = 5;
-        let timer = setInterval(function () {
+        let seconds = 10;
+        let timer = setInterval(() => {
           document.getElementById('timer').innerHTML =
             'Re-send OTP ' + seconds + 's ';
-          // console.log('isResendOTP', this.isResendOTP);
+          console.log('isResendOTP', this.isResendOTP); 
           if (seconds < 1) {
-            // this.isResendOTP = false;
-            let btn = <HTMLInputElement>document.getElementById('isResendOTP');
-            btn.disabled = false;
-            // console.log('isResendOTP', this.isResendOTP);
+            this.isResendOTP = false;
+            console.log('isResendOTP', this.isResendOTP);
             clearInterval(timer);
           }
           seconds--;
         }, 1000);
       })
       .catch((error) => {
-        this.message = error.message;
+        this.contactMessage = error.message;
         console.log('this is error: ', error);
       });
   }
@@ -87,10 +86,22 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.windowRef.confirmationResult
       .confirm(this.varificationcode)
       .then((result) => {
-        this.router.navigate(['landing']);
+        // var credential = firebase.auth.PhoneAuthProvider.credential(
+        //   this.windowRef.confirmationResult.verificationId,
+        //   `${this.varificationcode}`
+        // );
+        // firebase.auth().signInWithCredential(credential);
+        // this.router.navigate(['']);
+        console.log('done');
       })
       .catch((error) => {
-        this.message = 'Incorrect code entered';
+        this.message = error.message;
       });
+  }
+
+  ReSendOTP() {
+    console.log('called');
+    this.windowRef.grecaptcha.reset(this.windowRef.recaptchaWidgetId);
+    this.SendOTP();
   }
 }

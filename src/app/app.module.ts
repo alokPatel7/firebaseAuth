@@ -12,9 +12,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
+import { EmailAuthComponent } from './auth/email-auth/email-auth.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, LandingComponent],
+  declarations: [AppComponent, SignupComponent, LandingComponent, EmailAuthComponent, LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

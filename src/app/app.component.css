@@ -1,0 +1,16 @@
+.rowbar {
+  width: 100%;
+  display: inline;
+  /* margin: 40%; */
+}
+button {
+  border: none;
+  margin-top: 10px;
+  font-size: 19px;
+  background-color: #fff;
+  padding: 9px;
+}
+span {
+  font-size: 19px;
+  padding: 9px;
+}

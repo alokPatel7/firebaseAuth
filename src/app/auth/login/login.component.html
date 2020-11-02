@@ -1,0 +1,75 @@
+<!-- <div class="nav">
+  <button (click)="emailLogin()">Login via Email & password</button>
+  <button (click)="mobileLogin()">Login via mobile Number</button>
+</div> -->
+  <div class="container pt-5">
+    <div class="formlable">Login</div>
+    <form (ngSubmit)="onSubmit()">
+      <small style="color: red" *ngIf="errorMessage">{{ errorMessage }}</small>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email Id</label>
+        <input
+          type="text"
+          class="form-control"
+          name="emailid"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          autocomplete="off"
+          [(ngModel)]="emailid"
+        />
+
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          aria-describedby="emailHelp"
+          placeholder="Password"
+          autocomplete="off"
+          [(ngModel)]="password"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+
+      <button type="submit" class="btn btn-primary">SignUp</button>
+    </form>
+  </div>
+
+<!-- login by number  -->
+<!-- 
+<div *ngIf="">
+  <div class="container pt-1">
+    <div class="formlable">Login</div>
+    <form (ngSubmit)="handleLoginViaMobileNumbe()">
+      <small style="color: red" *ngIf="errorMessage">{{ errorMessage }}</small>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Number</label>
+        <input
+          type="text"
+          class="form-control"
+          name="contactNumber"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          autocomplete="off"
+          [(ngModel)]="contactNumber"
+        />
+
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your number with anyone else.</small
+        >
+      </div>
+      <div class="form-group">
+        <div id="recaptchacontainer"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">SignUp</button>
+    </form>
+  </div>
+</div> -->
