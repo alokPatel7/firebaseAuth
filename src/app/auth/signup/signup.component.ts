@@ -14,7 +14,7 @@ import 'firebase/auth';
 })
 export class SignupComponent implements OnInit, AfterViewInit {
   windowRef: any;
-  contactNumber: Number = 9621634369;
+  contactNumber: Number;
   varificationcode: Number;
   message = '';
   contactMessage = '';
@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
         let timer = setInterval(() => {
           document.getElementById('timer').innerHTML =
             'Re-send OTP ' + seconds + 's ';
-          console.log('isResendOTP', this.isResendOTP); 
+          console.log('isResendOTP', this.isResendOTP);
           if (seconds < 1) {
             this.isResendOTP = false;
             console.log('isResendOTP', this.isResendOTP);
