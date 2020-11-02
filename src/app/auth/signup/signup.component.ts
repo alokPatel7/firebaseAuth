@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 // import firebase from 'firebase/app';
 import { firebaseConfig } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { WindowService } from '../../services/window.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   constructor(
     private win: WindowService,
     private fbAuth: AngularFireAuth,
-    private http: HttpClient
+    private router: Router
   ) {
     this.windowRef = this.win.windowRef;
   }
@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.windowRef.confirmationResult
       .confirm(this.varificationcode)
       .then((result) => {
-        this.message = 'Correct';
+        this.router.navigate(['landing']);
       })
       .catch((error) => {
         this.message = 'Incorrect code entered';

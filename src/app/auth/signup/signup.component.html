@@ -40,7 +40,7 @@
           autocomplete="off"
           [(ngModel)]="varificationcode"
         />
-        <small *ngIf="message">{{message}}</small>
+        <small style="color: red" *ngIf="message">{{ message }}</small>
         <small id="emailHelp" class="form-text text-muted"
           >Never share your OTP with anyone else.</small
         >
