@@ -1,6 +1,6 @@
 <div class="container pt-5">
   <div class="formlable">Login</div>
-  <div *ngIf="!windowRef.confirmationResult">
+  <div>
     <form (ngSubmit)="SendOTP()">
       <div class="form-group">
         <label for="exampleInputEmail1">Mobile Number</label>
@@ -13,21 +13,40 @@
           placeholder="Enter mobile number"
           autocomplete="off"
           [(ngModel)]="contactNumber"
+          [disabled]="windowRef.confirmationResult"
         />
+        <small style="color: red" *ngIf="contactMessage">{{
+          contactMessage
+        }}</small>
         <small id="emailHelp" class="form-text text-muted"
           >We'll never share your number with anyone else.</small
         >
       </div>
-      <div class="form-group">
+      <div *ngIf="!windowRef.confirmationResult" class="form-group">
         <div id="recaptchacontainer"></div>
       </div>
-
-      <button type="submit" class="btn btn-primary">Send OTP</button>
+      <!-- timer code for resend OTP  -->
+      <span id="timer"></span>
+      <button
+        *ngIf="!windowRef.confirmationResult"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Send OTP
+      </button>
+      <button
+        *ngIf="windowRef.confirmationResult"
+        type="submit"
+        class="btn btn-primary"
+        id="isResendOTP"
+      >
+        Re-send OTP
+      </button>
     </form>
   </div>
 
   <!-- otp varification  -->
-  <div *ngIf="windowRef.confirmationResult">
+  <div class="pt-1" *ngIf="windowRef.confirmationResult">
     <form (ngSubmit)="verfiyOTP()">
       <div class="form-group">
         <label for="exampleInputEmail1">Enter OTP</label>
@@ -46,7 +65,13 @@
         >
       </div>
 
-      <button type="submit" class="btn btn-primary">Verify</button>
+      <button
+        *ngIf="windowRef.confirmationResult"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Verify
+      </button>
     </form>
   </div>
 </div>

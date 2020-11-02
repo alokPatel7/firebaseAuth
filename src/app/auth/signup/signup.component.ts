@@ -19,6 +19,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
   contactNumber: Number;
   varificationcode: Number;
   message = '';
+  contactMessage = '';
+  isResendOTP: boolean = true;
 
   showSuccessPopupbox: boolean = false;
 
@@ -61,10 +63,23 @@ export class SignupComponent implements OnInit, AfterViewInit {
       .signInWithPhoneNumber(`+91${this.contactNumber}`, appVerifier)
       .then((result) => {
         this.windowRef.confirmationResult = result;
+        let seconds = 5;
+        let timer = setInterval(function () {
+          document.getElementById('timer').innerHTML =
+            'Re-send OTP ' + seconds + 's ';
+          // console.log('isResendOTP', this.isResendOTP);
+          if (seconds < 1) {
+            // this.isResendOTP = false;
+            let btn = <HTMLInputElement>document.getElementById('isResendOTP');
+            btn.disabled = false;
+            // console.log('isResendOTP', this.isResendOTP);
+            clearInterval(timer);
+          }
+          seconds--;
+        }, 1000);
       })
       .catch((error) => {
-        // Error; SMS not sent
-        // ...
+        this.message = error.message;
         console.log('this is error: ', error);
       });
   }
