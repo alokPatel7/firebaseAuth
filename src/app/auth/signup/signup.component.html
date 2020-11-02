@@ -1,25 +1,52 @@
 <div class="container pt-5">
   <div class="formlable">Login</div>
-  <form [formGroup]="profileForm" (ngSubmit)="verfiInvisibleCapture()">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Mobile Number</label>
-      <input
-        type="text"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter mobile number"
-        autocomplete="off"
-        formControlName="contactNumber"
-      />
-      <small id="emailHelp" class="form-text text-muted"
-        >We'll never share your number with anyone else.</small
-      >
-    </div>
-    <div class="form-group">
-      <div id="recaptchacontainer"></div>
-    </div>
+  <div *ngIf="!windowRef.confirmationResult">
+    <form (ngSubmit)="SendOTP()">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Mobile Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          name="contactNumber"
+          aria-describedby="emailHelp"
+          placeholder="Enter mobile number"
+          autocomplete="off"
+          [(ngModel)]="contactNumber"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your number with anyone else.</small
+        >
+      </div>
+      <div class="form-group">
+        <div id="recaptchacontainer"></div>
+      </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+      <button type="submit" class="btn btn-primary">Send OTP</button>
+    </form>
+  </div>
+
+  <!-- otp varification  -->
+  <div *ngIf="windowRef.confirmationResult">
+    <form (ngSubmit)="verfiyOTP()">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter OTP</label>
+        <input
+          type="text"
+          class="form-control"
+          name="varificationcode"
+          aria-describedby="emailHelp"
+          placeholder="Enter OTP"
+          autocomplete="off"
+          [(ngModel)]="varificationcode"
+        />
+        <small *ngIf="message">{{message}}</small>
+        <small id="emailHelp" class="form-text text-muted"
+          >Never share your OTP with anyone else.</small
+        >
+      </div>
+
+      <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+  </div>
 </div>

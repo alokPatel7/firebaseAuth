@@ -7,15 +7,16 @@ export const environment = {
 };
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
-  apiKey: 'AIzaSyCRCtFULm0vcSURi7b6Wfe0Jo04kHZ631A',
-  authDomain: 'authentications-3ff1b.firebaseapp.com',
-  databaseURL: 'https://authentications-3ff1b.firebaseio.com',
-  projectId: 'authentications-3ff1b',
-  storageBucket: 'authentications-3ff1b.appspot.com',
-  messagingSenderId: '233187886243',
-  appId: '1:233187886243:web:2f9023dd56c9e030ae6b16',
-  measurementId: 'G-GFHTCPK0S6',
+  apiKey: 'AIzaSyCxZsYbWZ9t09y9ICJKSGw1fKGVVz0iY2w',
+  authDomain: 'authbynumber.firebaseapp.com',
+  databaseURL: 'https://authbynumber.firebaseio.com',
+  projectId: 'authbynumber',
+  storageBucket: 'authbynumber.appspot.com',
+  messagingSenderId: '799144470977',
+  appId: '1:799144470977:web:c1306cc51bd190897ce740',
+  measurementId: 'G-L36DKN3CRN',
 };
 /*
  * For easier debugging in development mode, you can import the following file
