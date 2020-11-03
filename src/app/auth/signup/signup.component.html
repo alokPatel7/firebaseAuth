@@ -34,17 +34,17 @@
         Send OTP
       </button>
     </form>
-    <form (ngSubmit)="ReSendOTP()">
-      <span id="timer"></span>
-      <button
-        *ngIf="windowRef.confirmationResult"
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="isResendOTP"
-      >
-        Re-send OTP
-      </button>
-    </form>
+
+    <!-- <span id="timer"></span>
+    <button
+      (click)="ReSendOTP()"
+      *ngIf="windowRef.confirmationResult"
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="isResendOTP"
+    >
+      Re-send OTP
+    </button> -->
   </div>
 
   <!-- otp varification  -->

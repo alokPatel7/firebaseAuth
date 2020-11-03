@@ -91,4 +91,31 @@ export class LoginComponent implements OnInit {
         console.log('error', error);
       });
   }
+  forgotPassword() {
+    console.log(' forgot called');
+
+    // var actionCodeSettings = {
+    //   url: 'https://authbynumber.firebaseapp.com',
+    //   iOS: {
+    //     bundleId: 'com.example.ios',
+    //   },
+    //   android: {
+    //     packageName: 'com.example.android',
+    //     installApp: true,
+    //     minimumVersion: '12',
+    //   },
+    //   handleCodeInApp: true,
+    // };
+    firebase
+      .auth()
+      .sendPasswordResetEmail('eadvp9@gmail.com')
+      .then(() => {
+        // Password reset email sent.
+        console.log('link send ');
+      })
+      .catch((error) => {
+        console.log('link not send ', error);
+        // Error occurred. Inspect error.code.
+      });
+  }
 }
